@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather App</title>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <!-- style.css-->
+    <link rel="stylesheet" href="/CSS/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="input-group rounded">
+      <input
+        type="text"
+        name="fName"
+        class="form-control rounded"
+        placeholder="Type city to search..."
+        id="search-input"
+        style="text-align: center"
+      />
+      <button id="search-button" type="button" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
+    <h1 class="font upperCase"></h1>
+    <div class="media-row">
+      <div class="card left-card">
+        <div class="card-body">
+          <span
+            ><h5 id="city_name" class="card-title bold"></h5>
+            <img id="current-icon"
+          /></span>
+          <h6
+            id="weekday"
+            class="card-title upper bold"
+            style="font-weight: bold"
+          ></h6>
+          <p id="time-now" class="upper card-text bold"></p>
+          <p class="bold current-weather-text">
+            Current Weather -
+            <span class="cloudy-or-center" id="cloudy-or"></span>
+          </p>
+
+          <table class="table bold">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody class="bold">
+              <tr>
+                <td style="width: 60%">Temperature now:</td>
+                <td
+                  id="current_temp"
+                  class="card-subtitle mb-2 table-right"
+                ></td>
+              </tr>
+              <tr>
+                <td>Feels like:</td>
+                <td id="temp_feels_like" class="card-subtitle mb-2 table-right">
+                  Feels like:
+                </td>
+              </tr>
+              <tr>
+                <td>Wind Speed:</td>
+                <td id="wind-speed" class="card-subtitle mb-2 table-right"></td>
+              </tr>
+              <tr>
+                <td>Humidity:</td>
+                <td id="humidity" class="card-subtitle mb-2 table-right"></td>
+              </tr>
+            </tbody>
+          </table>
+          <button
+            style="float: right; margin-top: 20px; margin-right: 20px"
+            id="show-forecast-button"
+            class="btn btn-light"
+          >
+            Show forecast
+          </button>
+        </div>
+      </div>
+      <div id="show-card" class="card right-card" style="height: auto">
+        <div class="card-body">
+          <h5 class="card-title bold">FORECAST</h5>
+          <h6
+            id="time-now-2"
+            class="card-title upper bold"
+            style="font-weight: bold"
+          ></h6>
+
+          <table class="table">
+            <thead class="bold">
+              <tr>
+                <th scope="col-md-auto"></th>
+                <th scope="col-md-auto">Temperature</th>
+                <th scope="col-md-auto">Feels like</th>
+                <th scope="col-md-auto">Wind Speed</th>
+                <th scope="col-md-auto">Humidity</th>
+                <th scope="col-md-auto"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  id="0-days-after-today"
+                  class="bold"
+                  style="text-align: left"
+                ></td>
+                <td id="forecast-current-temp" class="table-right"></td>
+                <td class="table-right" id="forecast-current-feels"></td>
+                <td class="table-right" id="forecast-current-wspeed"></td>
+                <td class="table-right" id="forecast-current-humidity"></td>
+                <td class="table-right">
+                  <img id="forecast-current-icon" style="margin: -25%" />
+                </td>
+              </tr>
+              <tr>
+                <td id="1-days-after-today" class="bold"></td>
+                <td class="table-right" id="forecast-1-temp"></td>
+                <td class="table-right" id="forecast-1-feels"></td>
+                <td class="table-right" id="forecast-1-wspeed"></td>
+                <td class="table-right" id="forecast-1-humidity"></td>
+                <td class="table-right">
+                  <img id="forecast-1-icon" style="margin: -25%" />
+                </td>
+              </tr>
+              <tr>
+                <td id="2-days-after-today" class="bold"></td>
+                <td class="table-right" id="forecast-2-temp"></td>
+                <td class="table-right" id="forecast-2-feels"></td>
+                <td class="table-right" id="forecast-2-wspeed"></td>
+                <td class="table-right" id="forecast-2-humidity"></td>
+                <td class="table-right">
+                  <img id="forecast-2-icon" style="margin: -25%" />
+                </td>
+              </tr>
+
+              <tr>
+                <td id="3-days-after-today" class="bold"></td>
+                <td class="table-right" id="forecast-3-temp"></td>
+                <td class="table-right" id="forecast-3-feels"></td>
+                <td class="table-right" id="forecast-3-wspeed"></td>
+                <td class="table-right" id="forecast-3-humidity"></td>
+                <td class="table-right">
+                  <img id="forecast-3-icon" style="margin: -25%" />
+                </td>
+              </tr>
+              <tr>
+                <td id="4-days-after-today" class="bold"></td>
+                <td class="table-right" id="forecast-4-temp"></td>
+                <td class="table-right" id="forecast-4-feels"></td>
+                <td class="table-right" id="forecast-4-wspeed"></td>
+                <td class="table-right" id="forecast-4-humidity"></td>
+                <td class="table-right">
+                  <img id="forecast-4-icon" style="margin: -25%" />
+                </td>
+              </tr>
+              <tr>
+                <td id="5-days-after-today" class="bold"></td>
+                <td class="table-right" id="forecast-5-temp"></td>
+                <td class="table-right" id="forecast-5-feels"></td>
+                <td class="table-right" id="forecast-5-wspeed"></td>
+                <td class="table-right" id="forecast-5-humidity"></td>
+                <td class="table-right">
+                  <img id="forecast-5-icon" style="margin: -25%" />
+                </td>
+              </tr>
+              <tr>
+                <td id="6-days-after-today" class="bold"></td>
+                <td class="table-right" id="forecast-6-temp"></td>
+                <td class="table-right" id="forecast-6-feels"></td>
+                <td class="table-right" id="forecast-6-wspeed"></td>
+                <td class="table-right" id="forecast-6-humidity"></td>
+                <td class="table-right">
+                  <img id="forecast-6-icon" style="margin: -25%" />
+                </td>
+              </tr>
+              <tr>
+                <td id="7-days-after-today" class="bold"></td>
+                <td class="table-right" id="forecast-7-temp"></td>
+                <td class="table-right" id="forecast-7-feels"></td>
+                <td class="table-right" id="forecast-7-wspeed"></td>
+                <td class="table-right" id="forecast-7-humidity"></td>
+                <td class="table-right">
+                  <img id="forecast-7-icon" style="margin: -25%" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script type="module" src="/js/weatherapp.js"></script>
+  </body>
+</html>

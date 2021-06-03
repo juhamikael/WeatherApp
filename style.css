@@ -1,0 +1,191 @@
+:root {
+  --alpha: #0b0c10;
+  --beta: #5580e9;
+  --gamma: #84ceeb;
+  --delta: #5ab8eb;
+  --epsilon: #c1c8e4;
+  --six: #8860d0;
+  --white: #fd7d1493;
+  /**/
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.font {
+  font-family: "Open Sans", sans-serif;
+}
+.upperCase {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.etusivu {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+}
+body {
+  /*background: linear-gradient(to left, var(--bs-white), var(--delta));*/
+  background: linear-gradient(#e7e7e7, #ffffff);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.card {
+  background: #1c141483;
+  color: rgb(200, 200, 200);
+  width: 35%;
+  height: auto;
+}
+.card-body {
+  color: rgb(77, 77, 77);
+}
+.table {
+  margin-right: auto;
+  /*color: rgb(75, 75, 75);*/
+}
+.table-right {
+  font-weight: bold;
+  color: rgb(224, 224, 224);
+  text-align: center;
+}
+.left-card {
+  position: relative;
+  width: 27%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.right-card {
+  background: #1c141483 !important;
+  color: rgb(255, 255, 255) !important;
+  position: relative;
+  margin-left: 64%;
+  width: 42rem;
+  margin-top: -33.4rem
+}
+
+.container-sm {
+  margin-top: 1rem;
+}
+.btn {
+  border-radius: 10px;
+}
+.taulukko {
+  position: relative;
+  margin-left: 25%;
+}
+#time-now {
+  margin-top: -0.6rem;
+}
+.upper {
+  text-transform: uppercase;
+}
+.table td,
+.table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 0px solid #dee2e6;
+}
+#current-icon{
+  margin-left: 15.2rem;
+  position: absolute;
+  margin-top: -3.5rem;
+}
+.bold {
+  font-weight: bold;
+  color: rgb(255, 255, 255) !important;
+}
+.current-weather-text{
+  margin-bottom: -13px; 
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
+.input-group {
+  width: 20%;
+  margin: 0 auto;
+  margin-top: 12rem;
+}
+@media(max-width:1016px){
+  .current-weather-text{
+    font-size: 14px!important
+  }
+}
+@media (max-width:1370px){
+  #current-icon{
+    margin-left: 9.4rem;
+    position: absolute;
+    margin-top: -3.5rem;
+  }
+}
+@media (max-width: 960px) {
+  .left-card {
+    margin: 0 auto; /* Primary Sidebar width */
+    width: 18rem;
+  }
+
+  .right-card {
+    margin: 0 auto; /* Primary Sidebar width */
+    width: 40rem;
+    margin-top: 1rem;
+  }
+  #show-forecast-button{
+    float: left!important;
+  }
+  .input-group {
+    width: 15rem !important;
+    margin: 0 auto !important;
+    margin-top: 2rem !important;
+  }
+  .bold {
+    width: auto;
+  }
+  .current-weather-text{
+    font-size: 0.9rem;
+    margin-left: -1rem;
+  }
+  /*
+  margin-top: -15px;
+    text-transform: uppercase;
+    margin-left: 0rem;
+    position: relative;
+    font-size: 1rem;
+}
+  */
+  .cloudy-or-center{
+    margin-left: 5.5rem;
+    font-size: 1.3rem;
+    margin-top: -2.8rem;
+  }
+}
+.media-row{
+  justify-content: center; display: flex"
+}
