@@ -1,37 +1,268 @@
-var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.createTemplateTagFirstArg=function(a){return a.raw=a};$jscomp.createTemplateTagFirstArgWithRaw=function(a,b){a.raw=b;return a};$jscomp.arrayIteratorImpl=function(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}};$jscomp.arrayIterator=function(a){return{next:$jscomp.arrayIteratorImpl(a)}};$jscomp.makeIterator=function(a){var b="undefined"!=typeof Symbol&&Symbol.iterator&&a[Symbol.iterator];return b?b.call(a):$jscomp.arrayIterator(a)};
-$jscomp.ASSUME_ES5=!1;$jscomp.ASSUME_NO_NATIVE_MAP=!1;$jscomp.ASSUME_NO_NATIVE_SET=!1;$jscomp.SIMPLE_FROUND_POLYFILL=!1;$jscomp.ISOLATE_POLYFILLS=!1;$jscomp.FORCE_POLYFILL_PROMISE=!1;$jscomp.FORCE_POLYFILL_PROMISE_WHEN_NO_UNHANDLED_REJECTION=!1;$jscomp.defineProperty=$jscomp.ASSUME_ES5||"function"==typeof Object.defineProperties?Object.defineProperty:function(a,b,c){if(a==Array.prototype||a==Object.prototype)return a;a[b]=c.value;return a};
-$jscomp.getGlobal=function(a){a=["object"==typeof globalThis&&globalThis,a,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var b=0;b<a.length;++b){var c=a[b];if(c&&c.Math==Math)return c}throw Error("Cannot find global object");};$jscomp.global=$jscomp.getGlobal(this);$jscomp.IS_SYMBOL_NATIVE="function"===typeof Symbol&&"symbol"===typeof Symbol("x");$jscomp.TRUST_ES6_POLYFILLS=!$jscomp.ISOLATE_POLYFILLS||$jscomp.IS_SYMBOL_NATIVE;$jscomp.polyfills={};
-$jscomp.propertyToPolyfillSymbol={};$jscomp.POLYFILL_PREFIX="$jscp$";var $jscomp$lookupPolyfilledValue=function(a,b){var c=$jscomp.propertyToPolyfillSymbol[b];if(null==c)return a[b];c=a[c];return void 0!==c?c:a[b]};$jscomp.polyfill=function(a,b,c,d){b&&($jscomp.ISOLATE_POLYFILLS?$jscomp.polyfillIsolated(a,b,c,d):$jscomp.polyfillUnisolated(a,b,c,d))};
-$jscomp.polyfillUnisolated=function(a,b,c,d){c=$jscomp.global;a=a.split(".");for(d=0;d<a.length-1;d++){var e=a[d];if(!(e in c))return;c=c[e]}a=a[a.length-1];d=c[a];b=b(d);b!=d&&null!=b&&$jscomp.defineProperty(c,a,{configurable:!0,writable:!0,value:b})};
-$jscomp.polyfillIsolated=function(a,b,c,d){var e=a.split(".");a=1===e.length;d=e[0];d=!a&&d in $jscomp.polyfills?$jscomp.polyfills:$jscomp.global;for(var g=0;g<e.length-1;g++){var f=e[g];if(!(f in d))return;d=d[f]}e=e[e.length-1];c=$jscomp.IS_SYMBOL_NATIVE&&"es6"===c?d[e]:null;b=b(c);null!=b&&(a?$jscomp.defineProperty($jscomp.polyfills,e,{configurable:!0,writable:!0,value:b}):b!==c&&(void 0===$jscomp.propertyToPolyfillSymbol[e]&&(c=1E9*Math.random()>>>0,$jscomp.propertyToPolyfillSymbol[e]=$jscomp.IS_SYMBOL_NATIVE?
-$jscomp.global.Symbol(e):$jscomp.POLYFILL_PREFIX+c+"$"+e),$jscomp.defineProperty(d,$jscomp.propertyToPolyfillSymbol[e],{configurable:!0,writable:!0,value:b})))};$jscomp.underscoreProtoCanBeSet=function(){var a={a:!0},b={};try{return b.__proto__=a,b.a}catch(c){}return!1};
-$jscomp.setPrototypeOf=$jscomp.TRUST_ES6_POLYFILLS&&"function"==typeof Object.setPrototypeOf?Object.setPrototypeOf:$jscomp.underscoreProtoCanBeSet()?function(a,b){a.__proto__=b;if(a.__proto__!==b)throw new TypeError(a+" is not extensible");return a}:null;$jscomp.generator={};$jscomp.generator.ensureIteratorResultIsObject_=function(a){if(!(a instanceof Object))throw new TypeError("Iterator result "+a+" is not an object");};
-$jscomp.generator.Context=function(){this.isRunning_=!1;this.yieldAllIterator_=null;this.yieldResult=void 0;this.nextAddress=1;this.finallyAddress_=this.catchAddress_=0;this.finallyContexts_=this.abruptCompletion_=null};$jscomp.generator.Context.prototype.start_=function(){if(this.isRunning_)throw new TypeError("Generator is already running");this.isRunning_=!0};$jscomp.generator.Context.prototype.stop_=function(){this.isRunning_=!1};
-$jscomp.generator.Context.prototype.jumpToErrorHandler_=function(){this.nextAddress=this.catchAddress_||this.finallyAddress_};$jscomp.generator.Context.prototype.next_=function(a){this.yieldResult=a};$jscomp.generator.Context.prototype.throw_=function(a){this.abruptCompletion_={exception:a,isException:!0};this.jumpToErrorHandler_()};$jscomp.generator.Context.prototype["return"]=function(a){this.abruptCompletion_={"return":a};this.nextAddress=this.finallyAddress_};
-$jscomp.generator.Context.prototype.jumpThroughFinallyBlocks=function(a){this.abruptCompletion_={jumpTo:a};this.nextAddress=this.finallyAddress_};$jscomp.generator.Context.prototype.yield=function(a,b){this.nextAddress=b;return{value:a}};$jscomp.generator.Context.prototype.yieldAll=function(a,b){var c=$jscomp.makeIterator(a),d=c.next();$jscomp.generator.ensureIteratorResultIsObject_(d);if(d.done)this.yieldResult=d.value,this.nextAddress=b;else return this.yieldAllIterator_=c,this.yield(d.value,b)};
-$jscomp.generator.Context.prototype.jumpTo=function(a){this.nextAddress=a};$jscomp.generator.Context.prototype.jumpToEnd=function(){this.nextAddress=0};$jscomp.generator.Context.prototype.setCatchFinallyBlocks=function(a,b){this.catchAddress_=a;void 0!=b&&(this.finallyAddress_=b)};$jscomp.generator.Context.prototype.setFinallyBlock=function(a){this.catchAddress_=0;this.finallyAddress_=a||0};$jscomp.generator.Context.prototype.leaveTryBlock=function(a,b){this.nextAddress=a;this.catchAddress_=b||0};
-$jscomp.generator.Context.prototype.enterCatchBlock=function(a){this.catchAddress_=a||0;a=this.abruptCompletion_.exception;this.abruptCompletion_=null;return a};$jscomp.generator.Context.prototype.enterFinallyBlock=function(a,b,c){c?this.finallyContexts_[c]=this.abruptCompletion_:this.finallyContexts_=[this.abruptCompletion_];this.catchAddress_=a||0;this.finallyAddress_=b||0};
-$jscomp.generator.Context.prototype.leaveFinallyBlock=function(a,b){var c=this.finallyContexts_.splice(b||0)[0];if(c=this.abruptCompletion_=this.abruptCompletion_||c){if(c.isException)return this.jumpToErrorHandler_();void 0!=c.jumpTo&&this.finallyAddress_<c.jumpTo?(this.nextAddress=c.jumpTo,this.abruptCompletion_=null):this.nextAddress=this.finallyAddress_}else this.nextAddress=a};$jscomp.generator.Context.prototype.forIn=function(a){return new $jscomp.generator.Context.PropertyIterator(a)};
-$jscomp.generator.Context.PropertyIterator=function(a){this.object_=a;this.properties_=[];for(var b in a)this.properties_.push(b);this.properties_.reverse()};$jscomp.generator.Context.PropertyIterator.prototype.getNext=function(){for(;0<this.properties_.length;){var a=this.properties_.pop();if(a in this.object_)return a}return null};$jscomp.generator.Engine_=function(a){this.context_=new $jscomp.generator.Context;this.program_=a};
-$jscomp.generator.Engine_.prototype.next_=function(a){this.context_.start_();if(this.context_.yieldAllIterator_)return this.yieldAllStep_(this.context_.yieldAllIterator_.next,a,this.context_.next_);this.context_.next_(a);return this.nextStep_()};
-$jscomp.generator.Engine_.prototype.return_=function(a){this.context_.start_();var b=this.context_.yieldAllIterator_;if(b)return this.yieldAllStep_("return"in b?b["return"]:function(c){return{value:c,done:!0}},a,this.context_["return"]);this.context_["return"](a);return this.nextStep_()};
-$jscomp.generator.Engine_.prototype.throw_=function(a){this.context_.start_();if(this.context_.yieldAllIterator_)return this.yieldAllStep_(this.context_.yieldAllIterator_["throw"],a,this.context_.next_);this.context_.throw_(a);return this.nextStep_()};
-$jscomp.generator.Engine_.prototype.yieldAllStep_=function(a,b,c){try{var d=a.call(this.context_.yieldAllIterator_,b);$jscomp.generator.ensureIteratorResultIsObject_(d);if(!d.done)return this.context_.stop_(),d;var e=d.value}catch(g){return this.context_.yieldAllIterator_=null,this.context_.throw_(g),this.nextStep_()}this.context_.yieldAllIterator_=null;c.call(this.context_,e);return this.nextStep_()};
-$jscomp.generator.Engine_.prototype.nextStep_=function(){for(;this.context_.nextAddress;)try{var a=this.program_(this.context_);if(a)return this.context_.stop_(),{value:a.value,done:!1}}catch(b){this.context_.yieldResult=void 0,this.context_.throw_(b)}this.context_.stop_();if(this.context_.abruptCompletion_){a=this.context_.abruptCompletion_;this.context_.abruptCompletion_=null;if(a.isException)throw a.exception;return{value:a["return"],done:!0}}return{value:void 0,done:!0}};
-$jscomp.generator.Generator_=function(a){this.next=function(b){return a.next_(b)};this["throw"]=function(b){return a.throw_(b)};this["return"]=function(b){return a.return_(b)};this[Symbol.iterator]=function(){return this}};$jscomp.generator.createGenerator=function(a,b){var c=new $jscomp.generator.Generator_(new $jscomp.generator.Engine_(b));$jscomp.setPrototypeOf&&a.prototype&&$jscomp.setPrototypeOf(c,a.prototype);return c};
-$jscomp.asyncExecutePromiseGenerator=function(a){function b(d){return a.next(d)}function c(d){return a["throw"](d)}return new Promise(function(d,e){function g(f){f.done?d(f.value):Promise.resolve(f.value).then(b,c).then(g,e)}g(a.next())})};$jscomp.asyncExecutePromiseGeneratorFunction=function(a){return $jscomp.asyncExecutePromiseGenerator(a())};$jscomp.asyncExecutePromiseGeneratorProgram=function(a){return $jscomp.asyncExecutePromiseGenerator(new $jscomp.generator.Generator_(new $jscomp.generator.Engine_(a)))};
-var key="f7315392ce72e45fb74ca85c82a05519",https="https://",current,show_forecast_button=document.getElementById("show-forecast-button"),show_card=document.getElementById("show-card");show_card.style.display="none";
-var search_button=document.getElementById("search-button"),search_input=document.getElementById("search-input"),city_name=document.getElementById("city_name"),current_temp=document.getElementById("current_temp"),temp_feels_like=document.getElementById("temp_feels_like"),currentTime=document.getElementById("time-now"),day=document.getElementById("weekday"),windSpeed=document.getElementById("wind-speed"),humidity=document.getElementById("humidity"),time_now_2=document.getElementById("time-now-2"),zero_days_after_today=
-document.getElementById("0-days-after-today"),cloudy_or=document.getElementById("cloudy-or"),forecast_current_temp=document.getElementById("forecast-current-temp"),forecast_current_feels=document.getElementById("forecast-current-feels"),forecast_current_wspeed=document.getElementById("forecast-current-wspeed"),forecast_current_humidity=document.getElementById("forecast-current-humidity"),forecast_current_icon=document.getElementById("forecast-current-icon"),date=new Date,UTC=date.toUTCString();
-search_button.addEventListener("click",function(){var a=search_input.value;current=https+"api.openweathermap.org/data/2.5/weather?q="+a+"&lang=en&appid="+key+"&units=metric";main(current,a)});
-var main=function(a,b){var c,d,e,g,f,m,t,D,l,E,p,q,v,u,w,x,F,G,r,H,I,J,n,y,z,A,B,C,h,K,L,M,N,O;return $jscomp.asyncExecutePromiseGeneratorProgram(function(k){switch(k.nextAddress){case 1:return void 0===b&&(b="Tampere"),c=a=https+"api.openweathermap.org/data/2.5/weather?q="+b+"&lang=en&appid="+key+"&units=metric",k.yield(fetch(""+c),2);case 2:return d=k.yieldResult,k.yield(d.json(),3);case 3:return e=k.yieldResult,g=e.sys.country,f=e.coord.lon,m=e.coord.lat,t="https://api.openweathermap.org/data/2.5/onecall?lat="+
-m+"&lon="+f+"&exclude=minutely,hourly&appid="+key+"&units=metric",k.yield(fetch(t),4);case 4:return D=k.yieldResult,k.yield(D.json(),5);case 5:l=k.yieldResult;E=l.timezone_offset;p=month_maker(UTC);q=time_now(UTC,E,p);v=q.slice(0,10);u=parseInt(v.slice(8));w=parseInt(v.slice(0,4));x=weekday(q);F=l.current.temp;G=l.current.feels_like;city_name.textContent=b+", "+g;day.textContent=x+" - "+u+"/"+p+"/"+w;time_now_2.textContent="Today - "+x+" - "+u+"/"+p+"/"+w;current_temp.textContent=F.toFixed(0)+" \u00b0C";
-temp_feels_like.textContent=G.toFixed(0)+" \u00b0C";currentTime.textContent=""+q.slice(16,-43);windSpeed.textContent=l.current.wind_speed+" m/s";humidity.textContent=l.current.humidity+" %";cloudy_or.textContent=""+l.current.weather[0].main;for(r=1;7>=r;r++)H=[document.getElementById(r+"-days-after-today")],zero_days_after_today.textContent=u+"."+p+" - Today",H[0].textContent=day_for_forecast(q,r).toString().replace(/,/g," - ");I=document.getElementById("current-icon");J=l.current.weather[0].icon;
-I.src="https://openweathermap.org/img/wn/"+J+"@2x.png";n=$jscomp.makeIterator(averager(l));y=n.next().value;z=n.next().value;A=n.next().value;B=n.next().value;C=n.next().value;forecast_current_temp.textContent=parseInt(y[0]).toFixed(0)+" \u00b0C";forecast_current_feels.textContent=parseInt(z[0]).toFixed(0)+" \u00b0C";forecast_current_wspeed.textContent=parseInt(A[0]).toFixed(0)+" m/s";forecast_current_humidity.textContent=parseInt(B[0]).toFixed(0)+" %";forecast_current_icon.src="https://openweathermap.org/img/wn/"+
-C[0]+".png";for(h=1;7>=h;h++)K=[document.getElementById("forecast-"+h+"-temp")],L=[document.getElementById("forecast-"+h+"-feels")],M=[document.getElementById("forecast-"+h+"-wspeed")],N=[document.getElementById("forecast-"+h+"-humidity")],O=[document.getElementById("forecast-"+h+"-icon")],K[0].textContent=parseFloat(y[h]).toFixed(0)+" \u00b0C",L[0].textContent=parseFloat(z[h]).toFixed(0)+" \u00b0C",M[0].textContent=parseFloat(A[h]).toFixed(0)+" m/s",N[0].textContent=parseFloat(B[h]).toFixed(0)+" %",
-O[0].src="https://openweathermap.org/img/wn/"+C[h]+".png";k.jumpToEnd()}})};function averager(a){for(var b=[],c=[],d=[],e=[],g=[],f=0;7>=f;f++)c[f]=((a.daily[f].temp.day+a.daily[f].temp.eve)/2).toFixed(2),b[f]=((a.daily[f].feels_like.day+a.daily[f].feels_like.eve)/2).toFixed(2),d[f]=a.daily[f].wind_speed,e[f]=a.daily[f].humidity,g[f]=a.daily[f].weather[0].icon;return[b,c,d,e,g]}
-function month_maker(a){var b;a.includes("Jan")&&(b=1);a.includes("Feb")&&(b=2);a.includes("Mar")&&(b=3);a.includes("Apr")&&(b=4);a.includes("May")&&(b=5);a.includes("Jun")&&(b=6);a.includes("Jul")&&(b=7);a.includes("Aug")&&(b=8);a.includes("Sep")&&(b=9);a.includes("Oct")&&(b=10);a.includes("Nov")&&(b=11);a.includes("Dec")&&(b=12);return b}
-function time_now(a,b,c){var d=Math.floor(b/60/60),e=Math.floor(b/60)-60*d;b%=60;var g=parseFloat(a.slice(12,-13)),f=parseFloat(a.slice(5,-22)),m=parseFloat(a.slice(17,-10)),t=parseFloat(a.slice(20,-7));a=parseFloat(a.slice(23,-4));return(new Date(g,c-1,f,m+d,t+e,a+b)).toISOString().toString()}
-function weekday(a){a=(new Date(a)).getDay();var b;0===a&&(b="Sunday");1===a&&(b="Monday");2===a&&(b="Tuesday");3===a&&(b="Wednesday");4===a&&(b="Thursday");5===a&&(b="Friday");6===a&&(b="Saturday");return b}
-function day_for_forecast(a,b){var c=a.slice(0,10),d=parseInt(c.slice(8))+b,e=parseInt(c.slice(5,-3)),g=parseInt(c.slice(0,4));c=a.slice(11,-5);var f=parseInt(c.slice(0,-6)),m=parseInt(c.slice(3));c=new Date(g,e-1,d,f,m);c=c.getDay(c);e=(new Date(g,e-1,d,f,m)).toISOString().slice(0,10);d=parseInt(e.toString().slice(8));e=parseInt(e.toString().slice(5,-3));c=WhatDay(c);return[d+"."+e,c]}
-function WhatDay(a){if(0===a)return"Sunday";if(1===a)return"Monday";if(2===a)return"Tuesday";if(3===a)return"Wednesday";if(4===a)return"Thursday";if(5===a)return"Friday";if(6===a)return"Saturday"}show_forecast_button.onclick=function(){"none"===show_card.style.display?(show_card.style.display="block",show_card.style.transition="all 1s"):show_card.style.display="none"};main();
+const key = "f7315392ce72e45fb74ca85c82a05519";
+const https = "https://";
+let current;
+
+// All document.getElementById:s
+/////////////////////////////////////////////////
+let show_forecast_button = document.getElementById("show-forecast-button");
+let show_card = document.getElementById("show-card");
+// Variable to hide forecast card by default
+show_card.style.display = "none";
+let search_button = document.getElementById("search-button");
+let search_input = document.getElementById("search-input");
+/////////////////////////////////////////////////
+const city_name = document.getElementById("city_name");
+const current_temp = document.getElementById("current_temp");
+const temp_feels_like = document.getElementById("temp_feels_like");
+const currentTime = document.getElementById("time-now");
+const day = document.getElementById("weekday");
+const windSpeed = document.getElementById("wind-speed");
+const humidity = document.getElementById("humidity");
+const time_now_2 = document.getElementById("time-now-2");
+let zero_days_after_today = document.getElementById("0-days-after-today");
+const cloudy_or = document.getElementById("cloudy-or");
+/////////////////////////////////////////////////
+let forecast_current_temp = document.getElementById("forecast-current-temp");
+let forecast_current_feels = document.getElementById("forecast-current-feels");
+let forecast_current_wspeed = document.getElementById(
+  "forecast-current-wspeed"
+);
+let forecast_current_humidity = document.getElementById(
+  "forecast-current-humidity"
+);
+let forecast_current_icon = document.getElementById("forecast-current-icon");
+/////////////////////////////////////////////////
+
+let date = new Date();
+let UTC = date.toUTCString();
+
+search_button.addEventListener("click", function () {
+  let search_city = search_input.value;
+  let cityName = search_city;
+  current = `${https}api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=en&appid=${key}&units=metric`;
+  main(current, cityName);
+});
+const main = async (current, cityName) => {
+  if (cityName === undefined) {
+    cityName = "Tampere";
+  } else {
+    cityName = cityName;
+  }
+  current = `${https}api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=en&appid=${key}&units=metric`;
+  let currentAddress = current;
+  const currentResponse = await fetch(`${currentAddress}`);
+  const currentData = await currentResponse.json();
+  const country = currentData.sys.country;
+  const lon = currentData.coord.lon;
+  const lat = currentData.coord.lat;
+  const address = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${key}&units=metric`;
+  const finalResponse = await fetch(address);
+  const data = await finalResponse.json();
+  console.log("data: ", data);
+  let timeZone = data.timezone_offset;
+  let month_as_number = month_maker(UTC);
+  let current_time = time_now(UTC, timeZone, month_as_number);
+  console.log("current_time: ", current_time);
+
+  let current_time_day = current_time[0];
+  let current_time_now = current_time[1];
+
+  let current_date_year = parseInt(current_time[2].substring(7));
+  let current_date_month = parseInt(
+    month_maker(current_time[2].substring(0, 3))
+  );
+  let current_date_day = parseInt(current_time[2].substring(4, 6));
+  let week_day = WhatDay(current_time[0]);
+  //Current card
+  const temp = data.current.temp;
+  const feelsLike = data.current.feels_like;
+  city_name.textContent = `${cityName}, ${country}`;
+  day.textContent = `${current_time_now} - ${week_day} - ${current_date_day}/${current_date_month}/${current_date_year}`;
+  //Forecast card
+  time_now_2.textContent = `Today - ${week_day} - ${current_date_day}/${month_as_number}/${current_date_year}`;
+  console.log("week_day: ", week_day);
+  current_temp.textContent = `${temp.toFixed(0)} °C`;
+  temp_feels_like.textContent = `${feelsLike.toFixed(0)} °C`;
+  currentTime.textContent = `${current_time.slice(16, -43)}`;
+  windSpeed.textContent = `${data.current.wind_speed} m/s`;
+  humidity.textContent = `${data.current.humidity} %`;
+  cloudy_or.textContent = `${data.current.weather[0].main}`;
+  //
+  for (let z = 1; z <= 7; z++) {
+    let days_after_today = [document.getElementById(`${z}-days-after-today`)];
+    zero_days_after_today.textContent = `${current_date_day}.${month_as_number} - Today`;
+    days_after_today[0].textContent = day_for_forecast(
+      current_date_day,
+      current_date_month,
+      current_date_year,
+
+      z
+    )
+      .toString()
+      .replace(/,/g, " - ");
+  }
+  let current_icon_id = document.getElementById("current-icon");
+  let current_icon = data.current.weather[0].icon;
+  current_icon_id.src = `https://openweathermap.org/img/wn/${current_icon}@2x.png`;
+  const [
+    forecast_temp,
+    forecast_feels_likes,
+    forecast_wspeed,
+    forecast_humiditys,
+    forecast_icon,
+  ] = averager(data);
+  forecast_current_temp.textContent = `${parseInt(forecast_temp[0]).toFixed(
+    0
+  )} °C`;
+  forecast_current_feels.textContent = `${parseInt(
+    forecast_feels_likes[0]
+  ).toFixed(0)} °C`;
+  forecast_current_wspeed.textContent = `${parseInt(forecast_wspeed[0]).toFixed(
+    0
+  )} m/s`;
+  forecast_current_humidity.textContent = `${parseInt(
+    forecast_humiditys[0]
+  ).toFixed(0)} %`;
+  forecast_current_icon.src = `https://openweathermap.org/img/wn/${forecast_icon[0]}.png`;
+  for (let y = 1; y <= 7; y++) {
+    let forecasttemp = [document.getElementById(`forecast-${y}-temp`)];
+    let forecastfeels = [document.getElementById(`forecast-${y}-feels`)];
+    let forecastwspeed = [document.getElementById(`forecast-${y}-wspeed`)];
+    let forecasthumidity = [document.getElementById(`forecast-${y}-humidity`)];
+    let forecasticon = [document.getElementById(`forecast-${y}-icon`)];
+    //
+
+    forecasttemp[0].textContent = `${parseFloat(forecast_temp[y]).toFixed(
+      0
+    )} °C`;
+    forecastfeels[0].textContent = `${parseFloat(
+      forecast_feels_likes[y]
+    ).toFixed(0)} °C`;
+    forecastwspeed[0].textContent = `${parseFloat(forecast_wspeed[y]).toFixed(
+      0
+    )} m/s`;
+    forecasthumidity[0].textContent = `${parseFloat(
+      forecast_humiditys[y]
+    ).toFixed(0)} %`;
+    forecasticon[0].src = `https://openweathermap.org/img/wn/${forecast_icon[y]}.png`;
+  }
+};
+
+function averager(data) {
+  let temperatures = [];
+  let feels_likes = [];
+  let wind_speeds = [];
+  let humiditys = [];
+  let icons = [];
+  for (let i = 0; i <= 7; i++) {
+    feels_likes[i] = (
+      (data.daily[i].temp.day + data.daily[i].temp.eve) /
+      2
+    ).toFixed(2);
+    temperatures[i] = (
+      (data.daily[i].feels_like.day + data.daily[i].feels_like.eve) /
+      2
+    ).toFixed(2);
+    wind_speeds[i] = data.daily[i].wind_speed;
+    humiditys[i] = data.daily[i].humidity;
+    icons[i] = data.daily[i].weather[0].icon;
+  }
+  return [temperatures, feels_likes, wind_speeds, humiditys, icons];
+}
+
+/////////////////////////////////////////////////
+function month_maker(UTC) {
+  let month;
+  if (UTC.includes("Jan")) month = 1;
+  if (UTC.includes("Feb")) month = 2;
+  if (UTC.includes("Mar")) month = 3;
+  if (UTC.includes("Apr")) month = 4;
+  if (UTC.includes("May")) month = 5;
+  if (UTC.includes("Jun")) month = 6;
+  if (UTC.includes("Jul")) month = 7;
+  if (UTC.includes("Aug")) month = 8;
+  if (UTC.includes("Sep")) month = 9;
+  if (UTC.includes("Oct")) month = 10;
+  if (UTC.includes("Nov")) month = 11;
+  if (UTC.includes("Dec")) month = 12;
+  return month;
+}
+function time_now(UTC, timeZone, month_as_number) {
+  let timezonehours = Math.floor(timeZone / 60 / 60);
+  let timezoneminutes = Math.floor(timeZone / 60) - timezonehours * 60;
+  let timezoneseconds = timeZone % 60;
+  let year = parseFloat(UTC.slice(12, -13));
+  let month = month_as_number;
+  let day = parseFloat(UTC.slice(5, -22));
+  let hours = parseFloat(UTC.slice(17, -10));
+  let minutes = parseFloat(UTC.slice(20, -7));
+  let seconds = parseFloat(UTC.slice(23, -4));
+
+  let current_day = new Date(
+    year,
+    month - 1,
+    day,
+    hours + timezonehours,
+    minutes + timezoneminutes,
+    seconds + timezoneseconds
+  )
+    .toString()
+    .substring(0, 4);
+  let current_time = new Date(
+    year,
+    month - 1,
+    day,
+    hours + timezonehours,
+    minutes + timezoneminutes,
+    seconds + timezoneseconds
+  )
+    .toTimeString()
+    .substring(0, 5);
+  let current_date = new Date(
+    year,
+    month - 1,
+    day,
+    hours + timezonehours,
+    minutes + timezoneminutes,
+    seconds + timezoneseconds
+  )
+    .toDateString()
+    .slice(4);
+  return [current_day, current_time, `${current_date}`];
+}
+function weekday(today) {
+  let name;
+  if (today === 0) name = "Sunday";
+  if (today === 1) name = "Monday";
+  if (today === 2) name = "Tuesday";
+  if (today === 3) name = "Wednesday";
+  if (today === 4) name = "Thursday";
+  if (today === 5) name = "Friday";
+  if (today === 6) name = "Saturday";
+  return name;
+}
+function day_for_forecast(day, month, year, dayCount) {
+  day = day + dayCount;
+  let new_date = new Date(year, month - 1, day).getDay();
+  let tell_me_day = weekday(new_date);
+  return [`${day}.${month}`, tell_me_day];
+}
+function WhatDay(what_day) {
+  if (what_day.includes("Sun")) return "Sunday";
+  if (what_day.includes("Mon")) return "Monday";
+  if (what_day.includes("Tue")) return "Tuesday";
+  if (what_day.includes("Wed")) return "Wednesday";
+  if (what_day.includes("Thu")) return "Thursday";
+  if (what_day.includes("Fri")) return "Friday";
+  if (what_day.includes("Sat")) return "Saturday";
+}
+show_forecast_button.onclick = function () {
+  if (show_card.style.display === "none") {
+    show_card.style.display = "block";
+
+    show_card.style.transition = "all 1s";
+  } else {
+    show_card.style.display = "none";
+  }
+};
+main();
